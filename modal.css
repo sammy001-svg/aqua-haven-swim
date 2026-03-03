@@ -1,0 +1,285 @@
+/* -----------------------------------
+   Modal Styles
+----------------------------------- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 1;
+    visibility: visible;
+    transition: all var(--transition-normal);
+}
+
+.modal-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal-dialog {
+    background: var(--color-white);
+    width: 90%;
+    max-width: 600px;
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: translateY(0);
+    transition: transform var(--transition-normal);
+}
+
+.modal-overlay.hidden .modal-dialog {
+    transform: translateY(20px);
+}
+
+.modal-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: transparent;
+    border: none;
+    font-size: 1.25rem;
+    color: var(--color-text-light);
+    cursor: pointer;
+    transition: color var(--transition-fast);
+}
+
+.modal-close:hover {
+    color: var(--color-primary);
+}
+
+.modal-header {
+    padding: 2rem 2.5rem 1.5rem;
+    border-bottom: 1px solid var(--color-surface);
+}
+
+.modal-header h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-secondary);
+}
+
+/* Modal Progress Indicator */
+.modal-progress {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+}
+
+.progress-step {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: var(--color-surface);
+    color: var(--color-text-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    position: relative;
+    z-index: 2;
+    transition: all var(--transition-normal);
+}
+
+.progress-step.active {
+    background: var(--color-primary);
+    color: var(--color-white);
+    box-shadow: 0 0 0 4px rgba(0, 150, 255, 0.2);
+}
+
+.progress-step.completed {
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+.progress-line {
+    flex: 1;
+    height: 3px;
+    background: var(--color-surface);
+    margin: 0 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.progress-line.filled {
+    background: var(--color-primary);
+}
+
+/* Modal Body & Forms */
+.modal-body {
+    padding: 2rem 2.5rem;
+}
+
+.form-step {
+    display: none;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.form-step.active {
+    display: block;
+}
+
+.form-step.hidden {
+    display: none !important;
+}
+
+.form-step h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-secondary);
+    text-align: left;
+}
+
+.step-subtitle {
+    color: var(--color-text-light);
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--color-secondary);
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    display: none;
+}
+
+.form-group.has-error input,
+.form-group.has-error select {
+    border-color: #e74c3c;
+    background: #fdf2f1;
+}
+
+.form-group.has-error .error-message {
+    display: block;
+}
+
+/* Payment Methods */
+.payment-methods {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.payment-option {
+    cursor: pointer;
+}
+
+.payment-option input[type="radio"] {
+    display: none;
+}
+
+.payment-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+    border: 2px solid var(--color-surface);
+    border-radius: var(--border-radius-sm);
+    transition: all var(--transition-fast);
+}
+
+.payment-card i {
+    font-size: 1.5rem;
+    color: var(--color-text-light);
+}
+
+.payment-card span {
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+.payment-option input[type="radio"]:checked + .payment-card {
+    border-color: var(--color-primary);
+    background: rgba(0, 150, 255, 0.05);
+}
+
+.payment-option input[type="radio"]:checked + .payment-card i {
+    color: var(--color-primary);
+}
+
+.instruction-box {
+    background: var(--color-surface);
+    padding: 1.25rem;
+    border-radius: var(--border-radius-sm);
+    margin-bottom: 1.5rem;
+}
+
+.instruction-box h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.instruction-box p {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    margin-bottom: 0.25rem;
+}
+
+.payment-instructions.hidden {
+    display: none;
+}
+
+/* Success State */
+.success-message {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.success-icon {
+    font-size: 4rem;
+    color: #2ecc71;
+    margin-bottom: 1.5rem;
+}
+
+.success-message h3 {
+    margin-bottom: 1rem;
+}
+
+.success-message p {
+    color: var(--color-text-light);
+    margin-bottom: 2rem;
+}
+
+.form-actions {
+    display: flex;
+    margin-top: 2rem;
+}
+
+.form-actions.right {
+    justify-content: flex-end;
+}
+
+.form-actions.split {
+    justify-content: space-between;
+}
+
+/* Make mt-3 utility */
+.mt-3 {
+    margin-top: 1rem;
+}
+
+.mt-4 {
+    margin-top: 1.5rem;
+}
