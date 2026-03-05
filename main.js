@@ -105,24 +105,51 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. Mobile Menu Toggle
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
+    const hasMegaMenu = document.querySelector('.has-mega-menu');
     
-    hamburger.addEventListener('click', () => {
+    const toggleMenu = () => {
         navLinks.classList.toggle('active');
+        const isActive = navLinks.classList.contains('active');
+        
+        // Body Scroll Lock
+        document.body.style.overflow = isActive ? 'hidden' : 'auto';
+        
         // Toggle icon between bars and times
         const icon = hamburger.querySelector('i');
-        if (icon.classList.contains('fa-bars')) {
+        if (isActive) {
             icon.classList.remove('fa-bars');
             icon.classList.add('fa-xmark');
         } else {
             icon.classList.remove('fa-xmark');
             icon.classList.add('fa-bars');
+            // Reset mega menu when closing main menu
+            if(hasMegaMenu) hasMegaMenu.classList.remove('active');
         }
-    });
+    };
 
-        // Close mobile menu when a link is clicked
+    hamburger.addEventListener('click', toggleMenu);
+
+    // Mobile Mega Menu Toggle
+    if (hasMegaMenu) {
+        const megaMenuLink = hasMegaMenu.querySelector('a');
+        megaMenuLink.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                hasMegaMenu.classList.toggle('active');
+            }
+        });
+    }
+
+    // Close mobile menu when a link is clicked
     document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
+        link.addEventListener('click', (e) => {
+            // Only close if it's not the mega-menu trigger on mobile
+            if (window.innerWidth <= 768 && link.closest('.has-mega-menu') && !link.closest('.mega-menu')) {
+                return;
+            }
+            
             navLinks.classList.remove('active');
+            document.body.style.overflow = 'auto';
             const icon = hamburger.querySelector('i');
             if (icon) {
                 icon.classList.remove('fa-xmark');
