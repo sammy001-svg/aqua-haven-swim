@@ -177,13 +177,22 @@ document.addEventListener('DOMContentLoaded', () => {
         // Open Modal
         bookNowButtons.forEach(btn => {
             btn.addEventListener('click', (e) => {
-                if(btn.textContent.trim() === 'Book Now') {
+                const btnText = btn.textContent.trim();
+                if(btnText === 'Book Now' || btnText === 'Select Plan') {
                     e.preventDefault();
                     bookingModal.classList.remove('hidden');
+                    
                     // Reset to step 1
                     currentStep = 1;
                     updateFormSteps();
                     document.body.style.overflow = 'hidden'; // Prevent background scrolling
+
+                    // Pre-select program if data-plan attribute exists
+                    const planId = btn.getAttribute('data-plan');
+                    const programSelect = document.getElementById('programSelect');
+                    if (planId && programSelect) {
+                        programSelect.value = planId;
+                    }
                 }
             });
         });
