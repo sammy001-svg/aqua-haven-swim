@@ -412,21 +412,21 @@
             <!-- Pricing Card 1 -->
             <div class="pricing-card">
               <div class="pricing-header">
-                <h3>Aqua Flex</h3>
+                <h3>Kids Plan</h3>
                 <div class="price">
-                  <span class="currency">Ksh </span>8,900<span class="period"
+                  <span class="currency">Ksh </span>18,000<span class="period"
                     >/mo</span
                   >
                 </div>
               </div>
               <ul class="pricing-features">
-                <li><i class="fa-solid fa-check"></i> Unlimited Pool Access</li>
-                <li><i class="fa-solid fa-check"></i> Unlimited Gym Access</li>
+                <li><i class="fa-solid fa-check"></i> Kids Pool Access</li>
+                <li><i class="fa-solid fa-check"></i> Supervised Sessions</li>
                 <li>
                   <i class="fa-solid fa-check"></i> Locker & Towel Service
                 </li>
-                <li class="disabled">
-                  <i class="fa-solid fa-xmark"></i> Personal Coaching
+                <li>
+                  <i class="fa-solid fa-check"></i> Progress Reports
                 </li>
                 <li class="disabled">
                   <i class="fa-solid fa-xmark"></i> Recovery Zone Access
@@ -439,16 +439,16 @@
             <div class="pricing-card popular">
               <div class="popular-badge">Most Popular</div>
               <div class="pricing-header">
-                <h3>Pro Athlete</h3>
+                <h3>Adult Plan</h3>
                 <div class="price">
-                  <span class="currency">Ksh </span>14,900<span class="period"
+                  <span class="currency">Ksh </span>20,000<span class="period"
                     >/mo</span
                   >
                 </div>
               </div>
               <ul class="pricing-features">
                 <li><i class="fa-solid fa-check"></i> Unlimited Pool Access</li>
-                <li><i class="fa-solid fa-check"></i> Unlimited Gym Access</li>
+                <li><i class="fa-solid fa-check"></i> Full Gym Access</li>
                 <li>
                   <i class="fa-solid fa-check"></i> Locker & Towel Service
                 </li>
@@ -461,24 +461,24 @@
             <!-- Pricing Card 3 -->
             <div class="pricing-card">
               <div class="pricing-header">
-                <h3>Elite Squad</h3>
+                <h3>Gym Plan</h3>
                 <div class="price">
-                  <span class="currency">Ksh </span>24,900<span class="period"
+                  <span class="currency">Ksh </span>10,000<span class="period"
                     >/mo</span
                   >
                 </div>
               </div>
               <ul class="pricing-features">
-                <li><i class="fa-solid fa-check"></i> Unlimited Pool Access</li>
-                <li><i class="fa-solid fa-check"></i> Unlimited Gym Access</li>
+                <li><i class="fa-solid fa-check"></i> Full Gym Access</li>
+                <li><i class="fa-solid fa-check"></i> Strength Equipment</li>
                 <li>
-                  <i class="fa-solid fa-check"></i> Premium Locker Service
+                  <i class="fa-solid fa-check"></i> Cardio Zone Access
                 </li>
                 <li>
-                  <i class="fa-solid fa-check"></i> Unlimited Coached Sessions
+                  <i class="fa-solid fa-check"></i> Personalized Gym Program
                 </li>
-                <li>
-                  <i class="fa-solid fa-check"></i> Recovery Zone + Massage
+                <li class="disabled">
+                  <i class="fa-solid fa-xmark"></i> Pool Access
                 </li>
               </ul>
               <a href="#contact" class="btn-outline">Select Plan</a>
@@ -587,9 +587,10 @@
             Join Aqua Haven today and take the first step towards achieving your
             aquatic and fitness goals.
           </p>
-          <form class="newsletter-form">
+          <form class="newsletter-form" id="newsletterForm">
             <input
               type="email"
+              id="newsletterEmail"
               placeholder="Enter your email address"
               required
             />

@@ -335,5 +335,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 1500);
             });
         }
+
+        // 5. Link Newsletter Form to Booking Modal
+        const newsletterForm = document.getElementById('newsletterForm');
+        const newsletterEmail = document.getElementById('newsletterEmail');
+        const emailAddr = document.getElementById('emailAddr');
+        const fullName = document.getElementById('fullName');
+
+        if (newsletterForm && newsletterEmail && emailAddr) {
+            newsletterForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = newsletterEmail.value.trim();
+                
+                if (email) {
+                    // Pre-fill modal email
+                    emailAddr.value = email;
+                    
+                    // Open modal
+                    bookingModal.classList.remove('hidden');
+                    currentStep = 1;
+                    updateFormSteps();
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Focus name field for better UX
+                    if (fullName) fullName.focus();
+                }
+            });
+        }
     }
 });
