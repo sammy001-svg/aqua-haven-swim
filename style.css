@@ -206,6 +206,7 @@ img {
 .logo {
   display: flex;
   align-items: center;
+  gap: 10px;
   height: 60px; /* Fixed height for navbar */
 }
 
@@ -215,9 +216,27 @@ img {
   display: block;
 }
 
-.navbar.scrolled .logo,
+.logo-text {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--color-white);
+  margin-left: 0.5rem;
+  transition: color var(--transition-normal);
+}
+
+.navbar.scrolled .logo .logo-text,
 .navbar.scrolled .nav-links a {
   color: var(--color-dark);
+}
+
+.nav-links a.active {
+  color: var(--color-secondary) !important;
+  font-weight: 700;
+}
+
+.navbar.scrolled .nav-links a.active {
+  color: var(--color-primary) !important;
 }
 
 .nav-links {
@@ -369,6 +388,7 @@ img {
   min-height: 400px;
   background: url("https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80")
     center/cover no-repeat fixed;
+  background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url("https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80");
   position: relative;
   display: flex;
   align-items: center;
@@ -376,6 +396,14 @@ img {
   text-align: center;
   color: var(--color-white);
   padding-top: 80px;
+}
+
+.hero-about {
+  background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url("images/IMG_20251222_081431_867.jpg.jpeg") !important;
+}
+
+.hero-facilities {
+  background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url("images/IMG_20251221_182208_4.jpg.jpeg") !important;
 }
 
 .hero-confidence {
@@ -1686,6 +1714,12 @@ footer {
 .footer-brand .logo {
   color: var(--color-white);
   margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.footer-brand .logo .logo-text {
+  color: var(--color-white);
 }
 
 .footer-brand p {
@@ -1849,10 +1883,10 @@ footer {
     left: 0;
     width: 100%;
     height: 100vh;
-    background: rgba(10, 37, 64, 0.9); /* Transparent for blur */
-    -webkit-backdrop-filter: blur(15px);
-    backdrop-filter: blur(15px);
-    padding: 6rem 2rem 2rem;
+    background: rgba(10, 37, 64, 0.98); /* Increased opacity for better readability */
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    padding: 6rem 1.5rem 2rem;
     box-shadow: none;
     clip-path: circle(0% at 90% 5%);
     transition: clip-path 0.5s cubic-bezier(0.77, 0, 0.175, 1);
@@ -1906,42 +1940,58 @@ footer {
     transform: none;
     box-shadow: none;
     border: none;
-    padding: 0.5rem 0 0.5rem 0;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
     background: transparent;
-    display: none;
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-  }
-
-  .nav-chevron {
-    font-size: 1rem;
-    transition: transform 0.3s ease;
-  }
-
-  .has-mega-menu.active .nav-chevron {
-    transform: rotate(180deg);
+    display: block; /* Changed from none to block for transition */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
   }
 
   .has-mega-menu.active .mega-menu {
-    display: block;
+    max-height: 1000px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    padding: 0.5rem 0 1.5rem 0;
   }
 
   .mega-links {
     grid-template-columns: 1fr;
-    gap: 0.8rem;
-    padding: 1rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
+    gap: 0.5rem;
+    padding: 1.2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
   }
 
   .mega-links a {
-    font-size: 1rem !important;
+    font-size: 0.95rem !important;
     text-align: left;
     display: flex;
     align-items: center;
-    gap: 0.8rem;
-    opacity: 0.9;
+    gap: 1rem;
+    opacity: 0.8;
+    padding: 0.8rem 1rem !important;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.02);
+    transition: all 0.3s ease;
+  }
+
+  .mega-links a i {
+    font-size: 1.1rem;
+    color: var(--color-primary);
+    width: 24px;
+    text-align: center;
+  }
+
+  .mega-links a:active {
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 1;
+    transform: translateX(5px);
   }
 
   .hamburger {
