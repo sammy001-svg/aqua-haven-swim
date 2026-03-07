@@ -177,22 +177,20 @@ document.addEventListener('DOMContentLoaded', () => {
         // Open Modal
         bookNowButtons.forEach(btn => {
             btn.addEventListener('click', (e) => {
-                const btnText = btn.textContent.trim();
-                if(btnText === 'Book Now' || btnText === 'Select Plan') {
-                    e.preventDefault();
-                    bookingModal.classList.remove('hidden');
-                    
-                    // Reset to step 1
-                    currentStep = 1;
-                    updateFormSteps();
-                    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                // Remove strict text check so any button linking to contact opens the modal
+                e.preventDefault();
+                bookingModal.classList.remove('hidden');
+                
+                // Reset to step 1
+                currentStep = 1;
+                updateFormSteps();
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
 
-                    // Pre-select program if data-plan attribute exists
-                    const planId = btn.getAttribute('data-plan');
-                    const programSelect = document.getElementById('programSelect');
-                    if (planId && programSelect) {
-                        programSelect.value = planId;
-                    }
+                // Pre-select program if data-plan attribute exists
+                const planId = btn.getAttribute('data-plan');
+                const programSelect = document.getElementById('programSelect');
+                if (planId && programSelect) {
+                    programSelect.value = planId;
                 }
             });
         });
@@ -201,6 +199,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const closeModal = () => {
             bookingModal.classList.add('hidden');
             document.body.style.overflow = 'auto';
+            
+            // Allow form to reset on close to prevent getting stuck
+            currentStep = 1;
+            updateFormSteps();
         };
 
         closeModalBtns.forEach(btn => {
@@ -372,4 +374,38 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
+
+    // 6. Moving Water Droplets Background
+    function createWaterDroplets() {
+        // Only run once
+        if (document.querySelector('.water-droplets-container')) return;
+
+        const container = document.createElement('div');
+        container.className = 'water-droplets-container';
+        document.body.prepend(container);
+
+        const dropletCount = 35; // Adjust number of droplets for aesthetics
+
+        for (let i = 0; i < dropletCount; i++) {
+            const droplet = document.createElement('div');
+            droplet.className = 'droplet';
+            
+            // Randomize properties for natural look
+            const size = Math.random() * 15 + 5; // 5px to 20px width
+            const left = Math.random() * 100; // 0% to 100% across screen width
+            const animationDuration = Math.random() * 4 + 3; // 3s to 7s falling speed
+            const animationDelay = Math.random() * 5; // 0s to 5s stagger start
+            
+            droplet.style.width = `${size}px`;
+            droplet.style.height = `${size * 1.3}px`; // Slightly elongated like a falling drop
+            droplet.style.left = `${left}%`;
+            droplet.style.animationDuration = `${animationDuration}s`;
+            droplet.style.animationDelay = `${animationDelay}s`;
+            
+            container.appendChild(droplet);
+        }
+    }
+
+    // Initialize droplets
+    createWaterDroplets();
 });
