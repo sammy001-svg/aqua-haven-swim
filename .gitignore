@@ -1,0 +1,29 @@
+# Large Media
+*.mp4
+*.mov
+*.avi
+
+# Specifically allow used videos
+!images/VID_20260306_124049.mp4
+!images/VID_20260304_111539.mp4
+!images/VID_20260227_111240.mp4
+!images/VID_20260218_122702.mp4
+!images/VID_20260215_092709.mp4
+!images/VID_20260214_145749.mp4
+
+# Node dependencies
+node_modules/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment variables
+.env
+.env.local

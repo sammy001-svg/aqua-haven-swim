@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Safety check in case modal HTML isn't loaded on this specific page yet
     if (bookingModal) {
-        const bookNowButtons = document.querySelectorAll('a[href="#contact"], a[href="index.html#contact"]');
+        const bookNowButtons = document.querySelectorAll('.book-now-trigger, a[href="#contact"]');
         const closeModalBtns = document.querySelectorAll('.modal-close, .modal-close-btn');
         const nextBtns = document.querySelectorAll('.btn-next');
         const prevBtns = document.querySelectorAll('.btn-prev');
@@ -276,12 +276,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const validateStep = (step) => {
             let isValid = true;
             const currentFormObj = document.getElementById(`step${step}`);
+            console.log(`Validating step ${step}`, currentFormObj);
             if(!currentFormObj) return true;
 
             const inputs = currentFormObj.querySelectorAll('input[required], select[required]');
+            console.log(`Found ${inputs.length} required inputs in step ${step}`);
             
             inputs.forEach(input => {
+                console.log(`Checking input ${input.id || input.name}: value="${input.value}"`);
                 if (!input.value.trim()) {
+                    console.log(`Input ${input.id || input.name} is empty!`);
                     input.closest('.form-group').classList.add('has-error');
                     isValid = false;
                 } else {
@@ -289,11 +293,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     // Specific email validation
                     if (input.type === 'email' && !input.value.includes('@')) {
+                        console.log(`Input ${input.id || input.name} has invalid email format!`);
                         input.closest('.form-group').classList.add('has-error');
                         isValid = false;
                     }
                 }
             });
+            console.log(`Step ${step} validation result: ${isValid}`);
             
             // Remove error state on input
             inputs.forEach(input => {
@@ -375,37 +381,60 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 6. Moving Water Droplets Background
-    function createWaterDroplets() {
-        // Only run once
-        if (document.querySelector('.water-droplets-container')) return;
 
-        const container = document.createElement('div');
-        container.className = 'water-droplets-container';
-        document.body.prepend(container);
+    // 5. Shared Video Logic (Silencing HTML Linters)
+    document.querySelectorAll('video').forEach(video => {
+        video.setAttribute('playsinline', '');
+        video.setAttribute('webkit-playsinline', '');
+    });
 
-        const dropletCount = 35; // Adjust number of droplets for aesthetics
 
-        for (let i = 0; i < dropletCount; i++) {
-            const droplet = document.createElement('div');
-            droplet.className = 'droplet';
+    // 6. Video Gallery Popup Logic
+    const videoModal = document.getElementById('videoModal');
+    const modalVideo = document.getElementById('modalVideo');
+    const videoItems = document.querySelectorAll('.video-item');
+    
+    if (videoModal && modalVideo && videoItems.length > 0) {
+        const closeVideoModal = () => {
+            videoModal.classList.add('hidden');
+            modalVideo.pause();
+            modalVideo.src = ""; // Clear src to stop loading
+            document.body.style.overflow = 'auto';
+        };
+
+        videoItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const videoSource = item.querySelector('video').src;
+                if (videoSource) {
+                    modalVideo.src = videoSource;
+                    videoModal.classList.remove('hidden');
+                    modalVideo.play();
+                    document.body.style.overflow = 'hidden';
+                }
+            });
             
-            // Randomize properties for natural look
-            const size = Math.random() * 15 + 5; // 5px to 20px width
-            const left = Math.random() * 100; // 0% to 100% across screen width
-            const animationDuration = Math.random() * 4 + 3; // 3s to 7s falling speed
-            const animationDelay = Math.random() * 5; // 0s to 5s stagger start
-            
-            droplet.style.width = `${size}px`;
-            droplet.style.height = `${size * 1.3}px`; // Slightly elongated like a falling drop
-            droplet.style.left = `${left}%`;
-            droplet.style.animationDuration = `${animationDuration}s`;
-            droplet.style.animationDelay = `${animationDelay}s`;
-            
-            container.appendChild(droplet);
+            // Add visual pointer cursor
+            item.style.cursor = 'pointer';
+        });
+
+        // Close on X button
+        const modalCloseBtn = videoModal.querySelector('.modal-close');
+        if (modalCloseBtn) {
+            modalCloseBtn.addEventListener('click', closeVideoModal);
         }
-    }
 
-    // Initialize droplets
-    createWaterDroplets();
+        // Close on clicking overlay
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) {
+                closeVideoModal();
+            }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !videoModal.classList.contains('hidden')) {
+                closeVideoModal();
+            }
+        });
+    }
 });

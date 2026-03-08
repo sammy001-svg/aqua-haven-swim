@@ -319,7 +319,7 @@
                   </li>
                   <li><i class="fa-solid fa-droplet"></i> Fun and Fitness</li>
                 </ul>
-                <a href="#contact" class="card-link"
+                <a href="#contact" class="card-link book-now-trigger" data-plan="water-safety"
                   >Learn More <i class="fa-solid fa-arrow-right"></i
                 ></a>
               </div>
@@ -348,7 +348,7 @@
                     Performance Training
                   </li>
                 </ul>
-                <a href="#contact" class="card-link"
+                <a href="#contact" class="card-link book-now-trigger" data-plan="competitive"
                   >Learn More <i class="fa-solid fa-arrow-right"></i
                 ></a>
               </div>
@@ -377,7 +377,7 @@
                     Level
                   </li>
                 </ul>
-                <a href="#contact" class="card-link"
+                <a href="#contact" class="card-link book-now-trigger" data-plan="specialized"
                   >Learn More <i class="fa-solid fa-arrow-right"></i
                 ></a>
               </div>
@@ -392,6 +392,36 @@
                 Environment
               </h4>
               <h4><i class="fa-solid fa-users"></i> Discipline and Teamwork</h4>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Video Gallery Section -->
+      <section id="training-highlights" class="section-padding">
+        <div class="container">
+          <div class="text-center-box">
+            <h2 class="section-title">Training Highlights</h2>
+            <p class="section-subtitle">Experience the progress and dedication of our athletes in action.</p>
+          </div>
+          <div class="video-grid">
+            <div class="video-item">
+              <video src="images/VID_20260306_124049.mp4" autoplay muted loop></video>
+            </div>
+            <div class="video-item">
+              <video src="images/VID_20260304_111539.mp4" autoplay muted loop></video>
+            </div>
+            <div class="video-item">
+              <video src="images/VID_20260227_111240.mp4" autoplay muted loop></video>
+            </div>
+            <div class="video-item">
+              <video src="images/VID_20260218_122702.mp4" autoplay muted loop></video>
+            </div>
+            <div class="video-item">
+              <video src="images/VID_20260215_092709.mp4" autoplay muted loop></video>
+            </div>
+            <div class="video-item">
+              <video src="images/VID_20260214_145749.mp4" autoplay muted loop></video>
             </div>
           </div>
         </div>
@@ -455,7 +485,7 @@
                 <li><i class="fa-solid fa-check"></i> 2 Coached Sessions/mo</li>
                 <li><i class="fa-solid fa-check"></i> Recovery Zone Access</li>
               </ul>
-              <a href="#contact" class="btn-primary" data-plan="adult">Select Plan</a>
+              <a href="#contact" class="btn-primary book-now-trigger" data-plan="adult">Book Now</a>
             </div>
 
             <!-- Pricing Card 3 -->
@@ -481,7 +511,7 @@
                   <i class="fa-solid fa-xmark"></i> Pool Access
                 </li>
               </ul>
-              <a href="#contact" class="btn-outline" data-plan="gym">Select Plan</a>
+              <a href="#contact" class="btn-outline book-now-trigger" data-plan="gym">Select Plan</a>
             </div>
           </div>
         </div>
@@ -816,6 +846,21 @@
               </button>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video Lightbox Modal -->
+    <div id="videoModal" class="modal-overlay hidden">
+      <div class="video-modal-dialog">
+        <button class="modal-close" aria-label="Close Gallery">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="video-container-full">
+          <video id="modalVideo" controls>
+            <source src="" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div>
     </div>
