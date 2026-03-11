@@ -1735,6 +1735,32 @@ footer {
   max-width: 300px;
 }
 
+.footer-social {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.footer-social a {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  transition: all var(--transition-normal);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-social a:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 136, 204, 0.3);
+}
+
 .footer-links h4,
 .footer-contact h4 {
   font-family: var(--font-heading);
@@ -2152,12 +2178,22 @@ footer {
    Sky Gradient & Glassmorphism Theme
 ======================================== */
 body {
-  background: linear-gradient(to bottom, #000000 0%, #001f3f 40%, #87CEEB 100%) !important;
+  background: linear-gradient(
+    to bottom,
+    #000000 0%,
+    #001f3f 40%,
+    #87ceeb 100%
+  ) !important;
   background-attachment: fixed !important;
   color: #f8fafc !important;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: #ffffff !important;
 }
 
@@ -2170,7 +2206,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Glassmorphism for Cards and Modals */
-.service-card, .pricing-card, .curriculum-card, .testimonial-card, .mega-menu, .modal-dialog, .instruction-box, .feature-item, .values-card, .video-item {
+.service-card,
+.pricing-card,
+.curriculum-card,
+.testimonial-card,
+.mega-menu,
+.modal-dialog,
+.instruction-box,
+.feature-item,
+.values-card,
+.video-item {
   background: rgba(255, 255, 255, 0.1) !important;
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
@@ -2179,7 +2224,17 @@ h1, h2, h3, h4, h5, h6 {
   color: #ffffff !important;
 }
 
-.service-card h3, .pricing-card h3, .curriculum-card h3, .testimonial-text, .author-info h4, .mega-menu a, .modal-dialog h2, .modal-dialog h3, .form-group label, .feature-item h4, .values-card h4 {
+.service-card h3,
+.pricing-card h3,
+.curriculum-card h3,
+.testimonial-text,
+.author-info h4,
+.mega-menu a,
+.modal-dialog h2,
+.modal-dialog h3,
+.form-group label,
+.feature-item h4,
+.values-card h4 {
   color: #ffffff !important;
 }
 
@@ -2196,7 +2251,8 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.navbar.scrolled .logo .logo-text, .navbar.scrolled .nav-links a:not(.btn-primary) {
+.navbar.scrolled .logo .logo-text,
+.navbar.scrolled .nav-links a:not(.btn-primary) {
   color: #ffffff !important;
 }
 
@@ -2210,7 +2266,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Global Text Readability on Dark Background */
-p, span, li, a, label, .feature-text p, .about-content p {
+p,
+span,
+li,
+a,
+label,
+.feature-text p,
+.about-content p {
   color: #f8fafc !important;
 }
 
@@ -2220,7 +2282,7 @@ p, span, li, a, label, .feature-text p, .about-content p {
   font-weight: 500;
 }
 
-.form-group.has-error input, 
+.form-group.has-error input,
 .form-group.has-error select,
 .form-group.has-error textarea {
   border-color: #ff4d4d !important;
@@ -2228,19 +2290,30 @@ p, span, li, a, label, .feature-text p, .about-content p {
   color: #ffffff !important;
 }
 
-i.fa-solid, i.fa-regular, i.fa-brands {
+i.fa-solid,
+i.fa-regular,
+i.fa-brands {
   color: var(--color-secondary) !important;
 }
 
 /* Exception for buttons to keep them readable */
-.btn-primary, .btn-primary p, .btn-primary span, .btn-primary i {
+.btn-primary,
+.btn-primary p,
+.btn-primary span,
+.btn-primary i {
   color: #ffffff !important;
 }
-.btn-outline, .btn-outline p, .btn-outline span, .btn-outline i {
+.btn-outline,
+.btn-outline p,
+.btn-outline span,
+.btn-outline i {
   color: var(--color-secondary) !important;
   border-color: var(--color-secondary) !important;
 }
-.btn-outline:hover, .btn-outline:hover p, .btn-outline:hover span, .btn-outline:hover i {
+.btn-outline:hover,
+.btn-outline:hover p,
+.btn-outline:hover span,
+.btn-outline:hover i {
   background: var(--color-secondary) !important;
   color: #000000 !important;
 }
@@ -2251,20 +2324,37 @@ i.fa-solid, i.fa-regular, i.fa-brands {
 }
 
 /* Fix modal inputs */
-input, select, textarea {
+input,
+select,
+textarea {
   background: rgba(255, 255, 255, 0.1) !important;
   color: #ffffff !important;
   border: 1px solid rgba(255, 255, 255, 0.3) !important;
 }
-input::placeholder, textarea::placeholder {
+input::placeholder,
+textarea::placeholder {
   color: rgba(255, 255, 255, 0.6) !important;
 }
 
 /* Specific Readability Fixes */
-.price, .price .currency, .price .period, .card-content h3, .card-content p, .program-list li, .pricing-features li, .pricing-header h3, .card-link, .service-card p, .pricing-card li, .pricing-card span {
+.price,
+.price .currency,
+.price .period,
+.card-content h3,
+.card-content p,
+.program-list li,
+.pricing-features li,
+.pricing-header h3,
+.card-link,
+.service-card p,
+.pricing-card li,
+.pricing-card span {
   color: #ffffff !important;
 }
-.feature-text h4, .feature-text p, .values-card h4, .values-card p {
+.feature-text h4,
+.feature-text p,
+.values-card h4,
+.values-card p {
   color: #ffffff !important;
 }
 .about-content p {
