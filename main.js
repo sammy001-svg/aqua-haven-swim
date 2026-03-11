@@ -329,27 +329,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Submit Booking
         if (submitBookingBtn) {
-            submitBookingBtn.addEventListener('click', () => {
+            submitBookingBtn.addEventListener('click', async () => {
                 const isMpesa = document.querySelector('input[name="paymentMethod"]:checked').value === 'mpesa';
-                const transactionCode = document.getElementById('transactionCode');
+                const transactionCodeInput = document.getElementById('transactionCode');
+                const transactionCode = transactionCodeInput ? transactionCodeInput.value.trim() : '';
                 
-                if (isMpesa && (!transactionCode || !transactionCode.value.trim())) {
-                    transactionCode.closest('.form-group').classList.add('has-error');
+                if (isMpesa && !transactionCode) {
+                    transactionCodeInput.closest('.form-group').classList.add('has-error');
                     alert('Please enter your M-Pesa transaction code.');
                     return;
                 }
                 
-                // Simulate API call and success
+                // Collect form data
+                const formData = new FormData();
+                const inputs = document.querySelectorAll('#bookingModal input, #bookingModal select, #bookingModal textarea');
+                inputs.forEach(input => {
+                    if (input.name) {
+                        if (input.type === 'radio' || input.type === 'checkbox') {
+                            if (input.checked) formData.append(input.name, input.value);
+                        } else {
+                            formData.append(input.name, input.value);
+                        }
+                    }
+                });
+
+                // Show loading state
                 const previousBtnText = submitBookingBtn.innerHTML;
                 submitBookingBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
                 submitBookingBtn.disabled = true;
                 
-                setTimeout(() => {
+                try {
+                    const response = await fetch('https://formspree.io/f/xvgnbvqr', {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        currentStep = 4; // Move to Success state
+                        updateFormSteps();
+                    } else {
+                        const data = await response.json();
+                        if (Object.hasOwn(data, 'errors')) {
+                            alert(data["errors"].map(error => error["message"]).join(", "));
+                        } else {
+                            alert("Oops! There was a problem submitting your form. Please try again.");
+                        }
+                    }
+                } catch (error) {
+                    alert("Oops! There was a problem submitting your form. Please check your connection.");
+                } finally {
                     submitBookingBtn.innerHTML = previousBtnText;
                     submitBookingBtn.disabled = false;
-                    currentStep = 4; // Move to Success state
-                    updateFormSteps();
-                }, 1500);
+                }
             });
         }
 
